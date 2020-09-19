@@ -57,15 +57,27 @@ public class PlayerTeamController : MonoBehaviour
 
     public void StartTurn(){
         ActiveTeam = true;
+        bool lost = true;
         foreach(Character character in TeamMembers){
             character.Actions = 2;
+            if(!character.knockedOut){
+                lost = false;
+            }
+        }
+        if(lost){
+            Game.GameEnd("Enemy Wins");
+            return;
         }
         activeCharacter = TeamMembers[0];
         activeCharacterID = 0;
         activeCharacter.SetAsActiveCharacter();
+        if(activeCharacter.knockedOut){
+            NextCharacter();
+        }
     }
 
     private void EndTurn(){
+        MapGrid.resetNodeColors();
         ActiveTeam = false;
         Game.PlayerTurnOver();
         Debug.Log("end turn");

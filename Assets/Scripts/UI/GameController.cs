@@ -20,6 +20,13 @@ public class GameController : MonoBehaviour
 
     }
 
+    public void GameEnd(string winner){
+        if(winner == "Player Wins"){
+            UI.ShowFinish(true);
+        }else{
+            UI.ShowFinish(false);
+        }
+    }
 
     //once map is generated find objects
     public void mapGenerated(){
@@ -34,16 +41,20 @@ public class GameController : MonoBehaviour
     public void StartGame(){
         GameState = "AIMove";
         AIT.Move();
-        GameState = "PlayerTurn";
-        PLT.StartTurn();
+        UI.UpdatePhase("Enemy Turn");
     }
 
     public void PlayerTurnOver(){
         GameState = "AITurn";
+        UI.UpdatePhase("Enemy Turn");
         AIT.Attack();
         AIT.Move();
+    }
+
+    public void AITurnOver(){
         GameState = "PlayerTurn";
         PLT.StartTurn();
+        UI.UpdatePhase("Player Turn");
     }
 
     private void GenerateAI(){
