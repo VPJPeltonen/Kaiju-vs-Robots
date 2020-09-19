@@ -26,14 +26,14 @@ public class MapController : MonoBehaviour
         }
     }
 
-   /* public Character getOccupant(int nodeX, int nodeY){
+    public Character getOccupant(int nodeX, int nodeY){
         if(nodeX >= mapWidth-1 || nodeX < 0 || nodeY >= mapHeight-1 || nodeY < 0){
             return null;
         }else{
             return mapNodes[nodeX][nodeY].GetComponent<NodeController>().occupant;
         }
     }
-*/
+
     //resets node variables for path finding
     public void resetNodesPathVariables(){
         foreach (Transform child in transform){

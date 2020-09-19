@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 { 
-    public int startX,startY,moveRange;
+    public int startX,startY,moveRange,attackPower,health,physicalResist,psychicResist;
     public MapController MapGrid;
-    private GameObject currentNode;
+    public GameObject Indicator,CharacterSprite;
+    public PlayerTeamController PlayerManager;
+    public ParticleSystem DamageEffect;
+    protected GameObject currentNode;
     protected Transform startNode, nextNode, endNode;
     protected float movementAnimationSpeed = 4.0f;
     protected float startTime,journeyLength;
     protected List<GameObject> path;
     protected int pathPoint;
     protected string state;
+    public bool knockedOut = false;
+    private int actions = 2;
+
+    public int Actions { get => actions; set => actions = value;}
+
+    void Start(){
+        Indicator.SetActive(false);
+    }
 
     void Update(){
         switch(state){
@@ -20,6 +31,45 @@ public class Character : MonoBehaviour
                 movementAnimation();
                 break;
         }
+    }
+
+    //returns the node the character is on
+    public GameObject getCurrentNode(){ return currentNode; } 
+
+    public virtual void hunt(){}
+
+    //for checking if character is in melee range
+    protected bool isInMeleeRange(NodeController targetLocation){
+        bool inRange = false;
+        NodeController characterNode = currentNode.GetComponent<NodeController>();
+        //array with coordinates for nodes surrounding target location
+        Vector2[] nearNodes = surroundingNodes(targetLocation);
+        foreach(Vector2 node in nearNodes){
+            if(characterNode.x == node.x && characterNode.y == node.y){
+                inRange = true;
+            }
+        }
+        return inRange;
+    }
+
+    //gives array of node locations surrounding given node
+    protected Vector2[] surroundingNodes(NodeController centerNode){
+        Vector2[] nearNodes = new Vector2[]{
+            new Vector2(centerNode.x-1,centerNode.y),
+            new Vector2(centerNode.x-1,centerNode.y+1),
+            new Vector2(centerNode.x,centerNode.y+1),
+            new Vector2(centerNode.x+1,centerNode.y+1),
+            new Vector2(centerNode.x+1,centerNode.y),
+            new Vector2(centerNode.x+1,centerNode.y-1),
+            new Vector2(centerNode.x,centerNode.y-1),
+            new Vector2(centerNode.x-1,centerNode.y-1)
+        };
+        return nearNodes;
+    }
+
+    public void SetAsActiveCharacter(){
+        Indicator.SetActive(true);
+        adjustGrid();
     }
 
     public void moveToStart(){
@@ -54,6 +104,29 @@ public class Character : MonoBehaviour
         }
     }
 
+    public void moveAndAttack(Character target){
+        if(actions <= 0){return;}
+        NodeController enemyLocation = target.getCurrentNode().GetComponent<NodeController>();
+        //check if no need to move
+        if(!isInMeleeRange(enemyLocation)){
+            NodeController moveNode = findClosestMeleeNode(enemyLocation);
+            startMoving(currentNode.GetComponent<NodeController>().x,currentNode.GetComponent<NodeController>().y,moveNode.x,moveNode.y);
+            if(actions >= 2 && target.gameObject.tag == "Enemy"){
+                reduceActions(2);
+                target.takeDamage(attackPower);
+                //Punch();
+            }else{
+                reduceActions(1);
+            }
+        }else{
+            if(target.gameObject.tag == "Enemy"){
+                target.takeDamage(attackPower);
+                //Punch();
+            }
+            reduceActions(1);
+        }
+        //adjustGrid();
+    }
 
     public void playerAction(int X, int Y){
         //if(activeTeam){
@@ -93,7 +166,7 @@ public class Character : MonoBehaviour
     public void clickMove(int targetX, int targetY){
         //if(actions <= 0){return;}
         startMoving(currentNode.GetComponent<NodeController>().x,currentNode.GetComponent<NodeController>().y,targetX,targetY);
-        //actions -= 1;
+        reduceActions(1);
         //UI.updateActions(actions);
         //adjustGrid();
         //WalkingAnimation();
@@ -149,6 +222,99 @@ public class Character : MonoBehaviour
             }  
         }
         return nodeSpot;
+    }
+
+    //checks the nodes around target node to find one thats closest
+    protected NodeController findClosestMeleeNode(NodeController targetLocation){
+        NodeController meleeNode = null;
+        int lowestDist = 0;
+        //array with coordinates for nodes surrounding target location
+        Vector2[] nearNodes = surroundingNodes(targetLocation);
+        //go trough the nodes to find closest one
+        foreach(Vector2 node in nearNodes){
+            GameObject playerNode = MapGrid.getNode((int)node.x,(int)node.y);
+            //in case the node doesnt exist maybe not try checking it 
+            if (playerNode == null){continue;}
+            NodeController proposedNode = playerNode.GetComponent<NodeController>();
+            if (!proposedNode.passable){continue;}
+            int distance = MapGrid.getPath(currentNode,proposedNode.x,proposedNode.y).Count;
+            if (meleeNode == null && proposedNode.occupant == null){
+                meleeNode = proposedNode;
+                lowestDist = distance;
+                continue;
+            }
+            if (distance < lowestDist && proposedNode.occupant == null){
+                meleeNode = proposedNode;
+                lowestDist = distance;
+            }
+        }
+        return meleeNode;
+    }
+
+    //shows hit effetct and checks if the damage is enough to knock the character out
+    public void takeDamage(int damage, string damageType = "physical"){
+        //sounds.playSound("defeat");
+        switch(damageType){
+            case "physical":
+                var damageMod = (100f-physicalResist)/100f;
+                damage = (int)Mathf.Round(damage*damageMod);
+                break;
+            case "psychic":
+                damage = (int)Mathf.Round(damage*((100-psychicResist)/100));
+                break;
+        }
+        /*if(shieldDuration > 0){
+            Debug.Log("Shield activated. Damage preshield: " + damage + " shield left: " + shieldDuration);
+            damage = Mathf.Clamp(damage-shieldAmount,0,1000);
+            shieldDuration -= 1; 
+            Debug.Log("Shield activated. Damage postshield: " + damage + " shield left: " + shieldDuration);
+        }*/
+        health -= damage;
+        DamageEffect.Emit(10);
+        //healthBar.SetHealth(health);
+        //UI.showDamage(-damage);
+        //hitIndicator.showHit();
+        //checks if the damage is enough to knock the character out. If character has points of undying he will lose one instead of dying
+        if(health <= 0){ 
+            /*if(undying > 0){
+                undying -= 1;
+                health = 1;
+                healthBar.SetHealth(health);
+            }else{*/
+            getDefeated();
+        }
+    }
+
+    protected void getDefeated(){
+        CharacterSprite.SetActive(false);
+        //healthBar.gameObject.SetActive(false);
+        //stunEffect.SetActive(false);
+        currentNode.GetComponent<NodeController>().occupant = null;
+        currentNode = null;
+        knockedOut = true;
+    }
+
+
+
+    protected virtual void reduceActions(int cost){
+        actions -= cost;
+        if(actions <= 0){
+            Indicator.SetActive(false);
+            PlayerManager.NextCharacter();
+            return;
+        }
+        adjustGrid();
+        //UI.updateActions(actions);
+    }
+
+    private void adjustGrid(){
+        if(actions > 0){
+            MapGrid.showMoveRange(moveRange,currentNode);
+            Debug.Log("show");
+        }else{
+            MapGrid.resetNodeColors();
+            Debug.Log("reset");
+        }
     }
 
 }

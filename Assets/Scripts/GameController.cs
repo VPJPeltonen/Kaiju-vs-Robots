@@ -8,6 +8,13 @@ using TMPro;
 public class GameController : MonoBehaviour
 {
     public Character Player;
+    public GameObject AIGoon;
+    public PlayerTeamController PLT;
+    public AIteamController AIT;
+    public UIController UI;
+    public BuildingsController Buildings;
+    private bool PlayerTurn;
+    private string GameState = "Generating Map";
 
     void Update(){
 
@@ -16,6 +23,29 @@ public class GameController : MonoBehaviour
 
     //once map is generated find objects
     public void mapGenerated(){
-        Player.moveToStart();
+        PLT.moveToStart();
+        AIT.moveToStart();
+        Buildings.SetUpMap();
+        //StartGame();
+        //GenerateAI();
+        UI.ShowStart();
+    }
+
+    public void StartGame(){
+        GameState = "AIMove";
+        AIT.Move();
+        GameState = "PlayerTurn";
+        PLT.StartTurn();
+    }
+
+    public void PlayerTurnOver(){
+        GameState = "AIMove";
+        AIT.Move();
+        GameState = "PlayerTurn";
+        PLT.StartTurn();
+    }
+
+    private void GenerateAI(){
+
     }
 }
