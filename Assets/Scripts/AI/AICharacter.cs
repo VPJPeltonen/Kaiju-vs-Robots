@@ -5,6 +5,7 @@ using UnityEngine;
 public class AICharacter : Character
 {
     private AIteamController Manager;
+    private List<NodeController> TargetNodes = new List<NodeController>();
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +58,7 @@ public class AICharacter : Character
         //AITeamManager AIteamManager = GameObject.FindWithTag("AImanager").GetComponent<AITeamManager>();
         GameObject enemy = Manager.findClosestEnemy(currentNode);
         NodeController targetNode = enemy.GetComponent<Character>().currentNode.GetComponent<NodeController>();
+        TargetNodes.Add(targetNode);
         targetNode.dangerous = true;//takeDamage(attackPower);
         targetNode.storedDamage += 1;
         Manager.AddDamageNode(targetNode);
@@ -85,6 +87,25 @@ public class AICharacter : Character
                 break;
         }
         return null;
+    }
+
+    public void clearAttackNodes(){
+        TargetNodes.Clear();
+    }
+
+    protected override void getDefeated(){
+        foreach(NodeController attackNode in TargetNodes){
+            attackNode.storedDamage -= 1;
+            if(attackNode.storedDamage <= 0){
+                attackNode.dangerous = false;
+            }
+        }
+        CharacterSprite.SetActive(false);
+        //healthBar.gameObject.SetActive(false);
+        //stunEffect.SetActive(false);
+        currentNode.GetComponent<NodeController>().occupant = null;
+        currentNode = null;
+        knockedOut = true;
     }
 
     protected override void reduceActions(int cost){

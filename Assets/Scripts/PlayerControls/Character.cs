@@ -285,7 +285,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    protected void getDefeated(){
+    protected virtual void getDefeated(){
         CharacterSprite.SetActive(false);
         //healthBar.gameObject.SetActive(false);
         //stunEffect.SetActive(false);

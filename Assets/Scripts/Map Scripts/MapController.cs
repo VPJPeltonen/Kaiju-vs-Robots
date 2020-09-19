@@ -50,6 +50,7 @@ public class MapController : MonoBehaviour
 
     //colors the grid based on is the node reachable with given move amount and source node
     public void showMoveRange(int range, GameObject sourceNode,bool checkDirect = false){
+        if(sourceNode == null){return;}
         int sourceX = sourceNode.GetComponent<NodeController>().x;
         int sourceY = sourceNode.GetComponent<NodeController>().y;
         foreach (Transform child in transform){

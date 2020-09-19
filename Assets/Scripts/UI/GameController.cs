@@ -48,7 +48,7 @@ public class GameController : MonoBehaviour
         GameState = "AITurn";
         UI.UpdatePhase("Enemy Turn");
         AIT.Attack();
-        AIT.Move();
+        //AIT.Move();
     }
 
     public void AITurnOver(){
