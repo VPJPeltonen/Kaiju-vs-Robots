@@ -39,7 +39,8 @@ public class GameController : MonoBehaviour
     }
 
     public void PlayerTurnOver(){
-        GameState = "AIMove";
+        GameState = "AITurn";
+        AIT.Attack();
         AIT.Move();
         GameState = "PlayerTurn";
         PLT.StartTurn();

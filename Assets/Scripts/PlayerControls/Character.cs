@@ -9,7 +9,7 @@ public class Character : MonoBehaviour
     public GameObject Indicator,CharacterSprite;
     public PlayerTeamController PlayerManager;
     public ParticleSystem DamageEffect;
-    protected GameObject currentNode;
+    public GameObject currentNode;
     protected Transform startNode, nextNode, endNode;
     protected float movementAnimationSpeed = 4.0f;
     protected float startTime,journeyLength;

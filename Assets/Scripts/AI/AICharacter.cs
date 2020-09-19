@@ -56,7 +56,10 @@ public class AICharacter : Character
     protected void hurtClosest(){
         //AITeamManager AIteamManager = GameObject.FindWithTag("AImanager").GetComponent<AITeamManager>();
         GameObject enemy = Manager.findClosestEnemy(currentNode);
-        enemy.GetComponent<Character>().takeDamage(attackPower);
+        NodeController targetNode = enemy.GetComponent<Character>().currentNode.GetComponent<NodeController>();
+        targetNode.dangerous = true;//takeDamage(attackPower);
+        targetNode.storedDamage += 1;
+        Manager.AddDamageNode(targetNode);
     }
 
     protected NodeController findMoveNode(string goal,string subgoal){

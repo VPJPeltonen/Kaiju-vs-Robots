@@ -7,7 +7,9 @@ public class NodeController : MonoBehaviour
     public int x,y,F,H,G;
     public bool passable = true;
     public bool dangerous = false;
+    public int storedDamage = 0;
     public GameObject debugCube,grid;
+    public ParticleSystem DamageEffect;
     //public effectTimer effectCube,fireEffect,psychicEffect;
     public GameObject Parent;
     public Character occupant;
@@ -22,7 +24,15 @@ public class NodeController : MonoBehaviour
         }
     }
 
-    // public nodeTrigger trigger;
+    public void TriggerDamage(){
+        dangerous = false;
+        if(occupant != null){
+            occupant.takeDamage(storedDamage);
+            storedDamage = 0;
+        }
+        DamageEffect.Emit(10);
+    }
+
     public void SetCoordinates(int X, int Y){x = X;y = Y;}
 
     //function for showing if the node is withing move distance from given source tile and move range

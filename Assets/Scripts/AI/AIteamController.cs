@@ -8,6 +8,8 @@ public class AIteamController : MonoBehaviour
     public PlayerTeamController EnemyManager;
     public MapController MapGrid;
 
+    private List<NodeController> AttackNodes = new List<NodeController>();
+
     public void moveActiveCharacter(AICharacter activeCharacter){
         TeamMembers[0].hunt();
     }
@@ -16,8 +18,20 @@ public class AIteamController : MonoBehaviour
         foreach(Character character in TeamMembers){
             if(!character.knockedOut){
                 character.hunt();
+                character.hunt();
             }
         }  
+    }
+
+    public void Attack(){
+        foreach(NodeController Node in AttackNodes){
+            Node.TriggerDamage();
+        }
+        AttackNodes.Clear();
+    }
+
+    public void AddDamageNode(NodeController newNode){
+        AttackNodes.Add(newNode);
     }
 
     //find a closest enemy to the asking character
