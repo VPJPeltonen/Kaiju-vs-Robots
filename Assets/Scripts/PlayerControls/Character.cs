@@ -10,6 +10,8 @@ public class Character : MonoBehaviour
     public PlayerTeamController PlayerManager;
     public ParticleSystem DamageEffect;
     public GameObject currentNode;
+    public AudioSource audio;
+    public AudioClip hit,special;
     public Animator anim;
     protected Transform startNode, nextNode, endNode;
     protected float movementAnimationSpeed = 4.0f;
@@ -119,6 +121,7 @@ public class Character : MonoBehaviour
             if(actions >= 2 && target.gameObject.tag == "Enemy"){
                 reduceActions(2);
                 target.takeDamage(attackPower);
+                audio.PlayOneShot(hit, 1F);
                 //Punch();
             }else{
                 reduceActions(1);
@@ -126,6 +129,7 @@ public class Character : MonoBehaviour
         }else{
             if(target.gameObject.tag == "Enemy"){
                 target.takeDamage(attackPower);
+                audio.PlayOneShot(hit, 1F);
                 //Punch();
             }
             reduceActions(1);
@@ -214,6 +218,7 @@ public class Character : MonoBehaviour
         foreach(NodeController node in targetNodes){
             node.PlayerSpecial();
         }
+        audio.PlayOneShot(special, 0.7F);
         reduceActions(2);
     }
 

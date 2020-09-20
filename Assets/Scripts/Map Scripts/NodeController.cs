@@ -10,6 +10,8 @@ public class NodeController : MonoBehaviour
     public int storedDamage = 0;
     public GameObject debugCube,grid,specialEffect;
     public ParticleSystem DamageEffect;
+    public AudioSource audio;
+    public AudioClip hit;
     //public effectTimer effectCube,fireEffect,psychicEffect;
     public GameObject Parent;
     public Character occupant;
@@ -33,6 +35,7 @@ public class NodeController : MonoBehaviour
     }
 
     public void TriggerDamage(){
+        audio.PlayOneShot(hit,1f);
         dangerous = false;
         if(occupant != null){
             occupant.takeDamage(storedDamage);
