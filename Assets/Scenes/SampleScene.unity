@@ -449,28 +449,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4682284977709664975, guid: 89747828b73d5d64cb28531bc1127879,
         type: 3}
-      propertyPath: Healthy
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682284977709664975, guid: 89747828b73d5d64cb28531bc1127879,
-        type: 3}
-      propertyPath: Damaged
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682284977709664975, guid: 89747828b73d5d64cb28531bc1127879,
-        type: 3}
-      propertyPath: Damaged2
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682284977709664975, guid: 89747828b73d5d64cb28531bc1127879,
-        type: 3}
       propertyPath: startX
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4682284977709664975, guid: 89747828b73d5d64cb28531bc1127879,
         type: 3}
       propertyPath: startY
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5000349945512408329, guid: 89747828b73d5d64cb28531bc1127879,
         type: 3}
@@ -2362,7 +2347,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startX: 14
   startY: 4
-  Bot1: {fileID: 3847154212142845881, guid: 23d4c68bf4d4d0048a4166d3c600c6b0, type: 3}
+  Bots:
+  - {fileID: 3847154212142845881, guid: 23d4c68bf4d4d0048a4166d3c600c6b0, type: 3}
+  - {fileID: 7997417453813416279, guid: 89b663ff78b12b54d854c06c3344127d, type: 3}
   Manager: {fileID: 896372773}
   currentNode: {fileID: 0}
   MapGrid: {fileID: 1032064319}
@@ -2411,7 +2398,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startX: 8
   startY: 14
-  Bot1: {fileID: 3847154212142845881, guid: 23d4c68bf4d4d0048a4166d3c600c6b0, type: 3}
+  Bots:
+  - {fileID: 3847154212142845881, guid: 23d4c68bf4d4d0048a4166d3c600c6b0, type: 3}
+  - {fileID: 7997417453813416279, guid: 89b663ff78b12b54d854c06c3344127d, type: 3}
   Manager: {fileID: 896372773}
   currentNode: {fileID: 0}
   MapGrid: {fileID: 1032064319}
@@ -4217,28 +4206,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4682284977709664975, guid: 89747828b73d5d64cb28531bc1127879,
         type: 3}
-      propertyPath: Healthy
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682284977709664975, guid: 89747828b73d5d64cb28531bc1127879,
-        type: 3}
-      propertyPath: Damaged
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682284977709664975, guid: 89747828b73d5d64cb28531bc1127879,
-        type: 3}
-      propertyPath: Damaged2
-      value: 
+      propertyPath: startX
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4682284977709664975, guid: 89747828b73d5d64cb28531bc1127879,
         type: 3}
       propertyPath: startY
       value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682284977709664975, guid: 89747828b73d5d64cb28531bc1127879,
-        type: 3}
-      propertyPath: startX
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5000349945512408329, guid: 89747828b73d5d64cb28531bc1127879,
         type: 3}
@@ -4470,7 +4444,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startX: 14
   startY: 14
-  Bot1: {fileID: 3847154212142845881, guid: 23d4c68bf4d4d0048a4166d3c600c6b0, type: 3}
+  Bots:
+  - {fileID: 3847154212142845881, guid: 23d4c68bf4d4d0048a4166d3c600c6b0, type: 3}
+  - {fileID: 7997417453813416279, guid: 89b663ff78b12b54d854c06c3344127d, type: 3}
   Manager: {fileID: 896372773}
   currentNode: {fileID: 0}
   MapGrid: {fileID: 1032064319}
@@ -10190,23 +10166,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4682284977709664975, guid: 89747828b73d5d64cb28531bc1127879,
         type: 3}
-      propertyPath: Healthy
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682284977709664975, guid: 89747828b73d5d64cb28531bc1127879,
-        type: 3}
-      propertyPath: Damaged
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682284977709664975, guid: 89747828b73d5d64cb28531bc1127879,
-        type: 3}
-      propertyPath: Damaged2
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4682284977709664975, guid: 89747828b73d5d64cb28531bc1127879,
-        type: 3}
       propertyPath: startX
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4682284977709664975, guid: 89747828b73d5d64cb28531bc1127879,
         type: 3}
@@ -11650,7 +11611,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8515861770534736140}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.341, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8515861770575899175}

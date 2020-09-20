@@ -24,9 +24,11 @@ public class Character : MonoBehaviour
 
     public int Actions { get => actions; set => actions = value;}
 
+    protected float counter = 0f;
     void Start(){
         Indicator.SetActive(false);
     }
+
 
     void Update(){
         switch(state){
@@ -34,7 +36,25 @@ public class Character : MonoBehaviour
                 movementAnimation();
                 anim.SetBool("walking", true);
                 break;
-            case "default":
+            case "attacking":
+                anim.SetBool("attacking", true);
+                counter += Time.deltaTime;
+                if(counter > 1f){
+                    state = "default";
+                    counter = 0f;
+                    anim.SetBool("attacking", false);
+                }
+                break;
+            case "casting":
+                anim.SetBool("casting", true);
+                counter += Time.deltaTime;
+                if(counter > 1f){
+                    state = "default";
+                    counter = 0f;
+                    anim.SetBool("casting", false);                    
+                }               
+                break;
+            default:
                 anim.SetBool("walking", false);
                 break;
         }
@@ -122,6 +142,7 @@ public class Character : MonoBehaviour
                 reduceActions(2);
                 target.takeDamage(attackPower);
                 audio.PlayOneShot(hit, 1F);
+                state = "attacking";
                 //Punch();
             }else{
                 reduceActions(1);
@@ -130,6 +151,7 @@ public class Character : MonoBehaviour
             if(target.gameObject.tag == "Enemy"){
                 target.takeDamage(attackPower);
                 audio.PlayOneShot(hit, 1F);
+                state = "attacking";
                 //Punch();
             }
             reduceActions(1);
@@ -219,6 +241,7 @@ public class Character : MonoBehaviour
             node.PlayerSpecial();
         }
         audio.PlayOneShot(special, 0.7F);
+        state = "casting";
         reduceActions(2);
     }
 

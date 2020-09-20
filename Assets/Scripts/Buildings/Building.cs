@@ -9,6 +9,10 @@ public class Building : Character
 
     }
 
+    void Update(){
+
+    }
+    
     public void MoveToGrid(MapController MapGrid){
         //generateStats();
         currentNode = MapGrid.getNode(startX,startY);

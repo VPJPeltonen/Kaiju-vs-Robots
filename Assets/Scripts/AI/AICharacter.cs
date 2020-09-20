@@ -18,6 +18,28 @@ public class AICharacter : Character
         switch(state){
             case "moving":
                 movementAnimation();
+                anim.SetBool("walking", true);
+                break;
+            case "attacking":
+                anim.SetBool("attacking", true);
+                counter += Time.deltaTime;
+                if(counter > 1f){
+                    state = "default";
+                    counter = 0f;
+                    anim.SetBool("attacking", false);
+                }
+                break;
+            case "casting":
+                anim.SetBool("casting", true);
+                counter += Time.deltaTime;
+                if(counter > 1f){
+                    state = "default";
+                    counter = 0f;
+                    anim.SetBool("casting", false);                    
+                }               
+                break;
+            default:
+                anim.SetBool("walking", false);
                 break;
         }
     }
@@ -50,6 +72,7 @@ public class AICharacter : Character
             List<GameObject> distance = MapGrid.getPath(currentNode,moveTarget.x,moveTarget.y);
             //if(distance.Count <= moveRange+1 && distance.Count != 0){ checkpunch = true; hurtClosest(); sounds.playSound("punch");}
             startMoving(currentPos.x,currentPos.y,moveTarget.x,moveTarget.y);
+            state = "moving";
             //actions -= 2;
         }else{
             //BadGuyPunchDontMove();
@@ -69,6 +92,7 @@ public class AICharacter : Character
         targetNode.dangerous = true;//takeDamage(attackPower);
         targetNode.storedDamage += 1;
         Manager.AddDamageNode(targetNode);
+        state = "attacking";
     }
 
     protected NodeController findMoveNode(string goal,string subgoal){

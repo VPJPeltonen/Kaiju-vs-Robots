@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public int startX,startY;
-    public GameObject Bot1;
+    public GameObject[] Bots;
     public AIteamController Manager;
     public GameObject currentNode;
     public MapController MapGrid;
@@ -26,11 +26,12 @@ public class Spawner : MonoBehaviour
         if(currentNode.GetComponent<NodeController>().occupant != null){
             return;
         }
-        int flip = Random.Range(0,2);
+        int flip = Random.Range(0,3);
         if(flip != 0){
             return;
         }
-        GameObject newEnemy = Instantiate(Bot1, transform.position, transform.rotation); 
+        flip = Random.Range(0,Bots.Length-1);
+        GameObject newEnemy = Instantiate(Bots[flip], transform.position, transform.rotation); 
         newEnemy.transform.SetParent(Manager.transform);
         Manager.TeamMembers.Add(newEnemy.GetComponent<AICharacter>());
         newEnemy.GetComponent<AICharacter>().initChar(startX,startY);
