@@ -4985,11 +4985,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startX: 0
   startY: 0
-  moveRange: 0
-  attackPower: 0
-  health: 0
+  moveRange: 4
+  attackPower: 1
+  health: 3
   physicalResist: 0
   psychicResist: 0
+  castRange: 0
   MapGrid: {fileID: 0}
   Indicator: {fileID: 2378852578815813786}
   CharacterSprite: {fileID: 3847154211658554352}

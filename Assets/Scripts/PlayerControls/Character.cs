@@ -362,10 +362,8 @@ public class Character : MonoBehaviour
     private void adjustGrid(){
         if(actions > 0){
             MapGrid.showMoveRange(moveRange,currentNode);
-            Debug.Log("show");
         }else{
             MapGrid.resetNodeColors();
-            Debug.Log("reset");
         }
     }
 

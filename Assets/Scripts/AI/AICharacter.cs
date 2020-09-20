@@ -21,6 +21,13 @@ public class AICharacter : Character
                 break;
         }
     }
+    
+    public void initChar(int startx, int starty){
+        MapGrid = GameObject.FindWithTag("Map").GetComponent<MapController>();
+        startX = startx;
+        startY = starty;
+        moveToStart();
+    }
 
     public override void hunt(){
        /* if(stunTurns >= 1){

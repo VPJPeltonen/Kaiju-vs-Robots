@@ -115,7 +115,6 @@ public class PlayerTeamController : MonoBehaviour
             EndTurn();
             return;
         }
-        Debug.Log(activeCharacterID);
         activeCharacter = TeamMembers[activeCharacterID];
         activeCharacter.SetAsActiveCharacter();
         if(activeCharacter.knockedOut){

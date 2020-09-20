@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class AIteamController : MonoBehaviour
 {
-    public AICharacter[] TeamMembers;
+    public  List<AICharacter> TeamMembers = new List<AICharacter>();
     public PlayerTeamController EnemyManager;
+    public Spawner[] Spawners;
     public MapController MapGrid;
     public GameController Game;
     public float actionDelay = 1f;
@@ -42,7 +43,7 @@ public class AIteamController : MonoBehaviour
                     }
                     currentChar += 1;
                     counter = 0f;
-                    if (currentChar >= TeamMembers.Length){
+                    if (currentChar >= TeamMembers.Count){
                         currentChar = 0;
                         state = "idle";
                         Game.AITurnOver();
@@ -71,6 +72,9 @@ public class AIteamController : MonoBehaviour
             Game.GameEnd("Player Wins");
             return;
         }*/
+        foreach(Spawner spawn in Spawners){
+            spawn.Spawn();
+        }
         state = "attacking";
     }
 
@@ -134,6 +138,9 @@ public class AIteamController : MonoBehaviour
         foreach(Character character in TeamMembers){
             character.moveToStart();
         }   
+        foreach(Spawner spawn in Spawners){
+            spawn.moveToStart();
+        }
     }
 
 }

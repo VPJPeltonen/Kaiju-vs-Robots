@@ -1390,6 +1390,9 @@ Transform:
   - {fileID: 479387855}
   - {fileID: 1186378319}
   - {fileID: 1797541163}
+  - {fileID: 1753883089}
+  - {fileID: 938658993}
+  - {fileID: 910752351}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1410,6 +1413,8 @@ MonoBehaviour:
   - {fileID: 1186378318}
   - {fileID: 1797541162}
   EnemyManager: {fileID: 644968505}
+  Spawners:
+  - {fileID: 1753883090}
   MapGrid: {fileID: 1032064319}
   Game: {fileID: 1049619652}
   actionDelay: 1
@@ -1651,6 +1656,104 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d20ce5bfe94003843a1ffd9fe781b89f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &910752350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 910752351}
+  - component: {fileID: 910752352}
+  m_Layer: 0
+  m_Name: AISpawner (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &910752351
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910752350}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 896372772}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &910752352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910752350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39e272e61c4e5ae4eb47ecd1ad76c586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startX: 31
+  startY: 1
+  Bot1: {fileID: 3847154212142845881, guid: 23d4c68bf4d4d0048a4166d3c600c6b0, type: 3}
+  Manager: {fileID: 896372773}
+  currentNode: {fileID: 0}
+  MapGrid: {fileID: 1032064319}
+--- !u!1 &938658992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 938658993}
+  - component: {fileID: 938658994}
+  m_Layer: 0
+  m_Name: AISpawner (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &938658993
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938658992}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 896372772}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &938658994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938658992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39e272e61c4e5ae4eb47ecd1ad76c586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startX: 31
+  startY: 15
+  Bot1: {fileID: 3847154212142845881, guid: 23d4c68bf4d4d0048a4166d3c600c6b0, type: 3}
+  Manager: {fileID: 896372773}
+  currentNode: {fileID: 0}
+  MapGrid: {fileID: 1032064319}
 --- !u!1 &950875795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1826,9 +1929,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLeft: 0
-  maxRight: 15
+  maxRight: 30
   maxDown: 0
-  maxUp: 6
+  maxUp: 12
 --- !u!82 &963194230
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3168,6 +3271,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1704851123}
   m_CullTransparentMesh: 0
+--- !u!1 &1753883088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1753883089}
+  - component: {fileID: 1753883090}
+  m_Layer: 0
+  m_Name: AISpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1753883089
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753883088}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 896372772}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1753883090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753883088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39e272e61c4e5ae4eb47ecd1ad76c586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startX: 31
+  startY: 31
+  Bot1: {fileID: 3847154212142845881, guid: 23d4c68bf4d4d0048a4166d3c600c6b0, type: 3}
+  Manager: {fileID: 896372773}
+  currentNode: {fileID: 0}
+  MapGrid: {fileID: 1032064319}
 --- !u!1001 &1797541161
 PrefabInstance:
   m_ObjectHideFlags: 0
