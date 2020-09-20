@@ -10,6 +10,7 @@ public class Character : MonoBehaviour
     public PlayerTeamController PlayerManager;
     public ParticleSystem DamageEffect;
     public GameObject currentNode;
+    public Animator anim;
     protected Transform startNode, nextNode, endNode;
     protected float movementAnimationSpeed = 4.0f;
     protected float startTime,journeyLength;
@@ -29,6 +30,10 @@ public class Character : MonoBehaviour
         switch(state){
             case "moving":
                 movementAnimation();
+                anim.SetBool("walking", true);
+                break;
+            case "default":
+                anim.SetBool("walking", false);
                 break;
         }
     }
@@ -252,7 +257,7 @@ public class Character : MonoBehaviour
     }
 
     //shows hit effetct and checks if the damage is enough to knock the character out
-    public void takeDamage(int damage, string damageType = "physical"){
+    public virtual void takeDamage(int damage, string damageType = "physical"){
         //sounds.playSound("defeat");
         switch(damageType){
             case "physical":
@@ -293,8 +298,6 @@ public class Character : MonoBehaviour
         currentNode = null;
         knockedOut = true;
     }
-
-
 
     protected virtual void reduceActions(int cost){
         actions -= cost;

@@ -8,6 +8,8 @@ public class NodeTrigger : MonoBehaviour
     public PlayerTeamController Player;
     public NodeController mainNode;
     public GameObject highlightSquare;
+    public NodeController MainNode;
+    public GameObject square;
     private bool highlighting = false;
     
     void Start(){
@@ -36,6 +38,22 @@ public class NodeTrigger : MonoBehaviour
     public void highlight(){
         highlighting = true;
     }
+
+    //if a blocking object enters the node disable it
+    private void OnTriggerEnter(Collider other){
+        if(other.tag == "Blocker"){
+            square.SetActive(false);
+            MainNode.passable = false;
+        }
+    }
+
+    //enable the node when blocking object leaves
+    private void OnTriggerExit(Collider other){
+        if(other.tag == "Blocker"){
+            square.SetActive(true);
+            MainNode.passable = true;
+        }
+    } 
 
 }
 

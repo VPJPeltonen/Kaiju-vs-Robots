@@ -52,9 +52,6 @@ public class PlayerTeamController : MonoBehaviour
         }
     }
 
-
-
-
     public void StartTurn(){
         ActiveTeam = true;
         bool lost = true;
