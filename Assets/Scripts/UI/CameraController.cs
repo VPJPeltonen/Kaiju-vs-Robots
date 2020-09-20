@@ -47,11 +47,9 @@ public class CameraController : MonoBehaviour
 
     //checks if mouse is over a map node and tells it to highlight itself
     private void highLightNodes(){
-        Debug.Log("trying highlight");
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if(Physics.Raycast(ray, out hit)){
             if(hit.collider.name == "Trigger"){
-                Debug.Log("highlight");
                 NodeTrigger node = hit.collider.GetComponent<NodeTrigger>();
                 node.highlight();
             }

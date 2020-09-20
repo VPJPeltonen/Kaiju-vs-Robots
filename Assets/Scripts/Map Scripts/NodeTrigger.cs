@@ -11,7 +11,8 @@ public class NodeTrigger : MonoBehaviour
     public NodeController MainNode;
     public GameObject square;
     private bool highlighting = false;
-    
+
+
     void Start(){
         Player = GameObject.FindWithTag("PlayerManager").GetComponent<PlayerTeamController>();
     }
@@ -23,6 +24,7 @@ public class NodeTrigger : MonoBehaviour
         }else{
             highlightSquare.SetActive(false);
         }
+
     }
 
     void OnMouseDown(){

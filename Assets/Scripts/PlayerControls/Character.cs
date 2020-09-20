@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 { 
-    public int startX,startY,moveRange,attackPower,health,physicalResist,psychicResist;
+    public int startX,startY,moveRange,attackPower,health,physicalResist,psychicResist,castRange;
     public MapController MapGrid;
     public GameObject Indicator,CharacterSprite;
     public PlayerTeamController PlayerManager;
@@ -166,6 +166,55 @@ public class Character : MonoBehaviour
                     }
                     break;
                 */
+    }
+
+    public void cast(int X, int Y){
+        if(actions != 2){
+            return;
+        }
+        
+        NodeController startNode = currentNode.GetComponent<NodeController>();
+        List<NodeController> targetNodes = new List<NodeController>();
+        if(X == startNode.x){
+            if(Y > startNode.y){
+                for(int i=1; i < castRange;i++){
+                    GameObject node = MapGrid.getNode(startNode.x,startNode.y+i);
+                    if(node != null){
+                        targetNodes.Add(node.GetComponent<NodeController>());
+                    }
+                }
+            }else{
+                for(int i=1; i <castRange;i++){
+                    GameObject node = MapGrid.getNode(startNode.x,startNode.y-i);
+                    if(node != null){
+                        targetNodes.Add(node.GetComponent<NodeController>());
+                    }
+                }
+            }
+        }
+        if(Y == startNode.y){
+            if(X > startNode.x){
+                for(int i=1; i <castRange;i++){
+                    
+                    GameObject node = MapGrid.getNode(startNode.x+i,startNode.y);
+                    if(node != null){
+                        targetNodes.Add(node.GetComponent<NodeController>());
+                    }
+                }
+            }else{
+                for(int i=1; i < castRange;i++){
+                    GameObject node = MapGrid.getNode(startNode.x-i,startNode.y);
+                    if(node != null){
+                        targetNodes.Add(node.GetComponent<NodeController>());
+                    }
+                }
+            }
+
+        }
+        foreach(NodeController node in targetNodes){
+            node.PlayerSpecial();
+        }
+        reduceActions(2);
     }
 
     public void clickMove(int targetX, int targetY){

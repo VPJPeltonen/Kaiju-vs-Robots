@@ -8,19 +8,27 @@ public class NodeController : MonoBehaviour
     public bool passable = true;
     public bool dangerous = false;
     public int storedDamage = 0;
-    public GameObject debugCube,grid;
+    public GameObject debugCube,grid,specialEffect;
     public ParticleSystem DamageEffect;
     //public effectTimer effectCube,fireEffect,psychicEffect;
     public GameObject Parent;
     public Character occupant;
     public GameObject DangerIndicator;
-
+    private float counter = 0f;
+    private bool counting = false;
 
     void Update(){
         if(dangerous){
             DangerIndicator.SetActive(true);
         }else{
             DangerIndicator.SetActive(false);
+        }
+        if(counting){
+            counter += Time.deltaTime;
+            if(counter >= 1f){
+                specialEffect.SetActive(false);
+                counting = false;
+            }
         }
     }
 
@@ -54,6 +62,16 @@ public class NodeController : MonoBehaviour
                 showOutOfRange();
             }
         }
+    }
+
+    public void PlayerSpecial(){
+        specialEffect.SetActive(true);
+        counting = true;
+        counter = 0f;
+        if(occupant != null){
+            occupant.takeDamage(1);
+        }
+        DamageEffect.Emit(10);
     }
 
     //changes color of the node to red

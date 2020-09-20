@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Building : Character
 {
+    public GameObject Healthy,Damaged,Damaged2;
     void Start(){
 
     }
@@ -36,21 +37,40 @@ public class Building : Character
         }*/
         health -= damage;
         DamageEffect.Emit(10);
+        switch(health){
+            case 2:
+                Healthy.SetActive(false);
+                Damaged.SetActive(true);
+                Damaged2.SetActive(false);
+                break;
+            case 1:
+                Healthy.SetActive(false);
+                Damaged.SetActive(false);
+                Damaged2.SetActive(true);
+                break;
+            case 0:
+                Healthy.SetActive(false);
+                Damaged.SetActive(false);
+                Damaged2.SetActive(false);
+                getDefeated();
+                break;
+        }
         //healthBar.SetHealth(health);
         //UI.showDamage(-damage);
         //hitIndicator.showHit();
         //checks if the damage is enough to knock the character out. If character has points of undying he will lose one instead of dying
+        /*
         if(health <= 0){ 
             /*if(undying > 0){
                 undying -= 1;
                 health = 1;
                 healthBar.SetHealth(health);
-            }else{*/
+            }else{
             getDefeated();
-        }
+        }*/
     }
-    protected virtual void getDefeated(){
-        CharacterSprite.SetActive(false);
+    protected override void getDefeated(){
+        //CharacterSprite.SetActive(false);
         //healthBar.gameObject.SetActive(false);
         //stunEffect.SetActive(false);
         currentNode.GetComponent<NodeController>().occupant = null;

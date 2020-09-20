@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIController : MonoBehaviour
 {
     public GameObject StartButton;
-    public Text PhaseText,FinishText;
+    public TextMeshProUGUI PhaseText,FinishText;
     public void ShowStart(){
         StartButton.SetActive(true);
     }

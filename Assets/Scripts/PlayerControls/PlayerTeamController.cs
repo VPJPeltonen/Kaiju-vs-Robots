@@ -52,6 +52,35 @@ public class PlayerTeamController : MonoBehaviour
         }
     }
 
+    public void playerCast(int X, int Y){
+        if(ActiveTeam){
+            //Character target = MapGrid.getOccupant(X,Y);
+            switch(mode){
+                case "normal":
+                    List<GameObject> distance = MapGrid.getPath(activeCharacter.getCurrentNode(),X,Y);
+                    if(distance.Count <= activeCharacter.castRange+1 && distance.Count != 0){
+                        activeCharacter.cast(X, Y);
+                    }
+                    break;
+                /*case "casting":
+                    power newPower = powerStorage.getPower(activeAbility);
+                    GameObject targetNode = grid.getNode(X,Y);
+                    if(newPower == null){break;}
+                    int dist = grid.getPath(activeCharacter.getCurrentNode(),X,Y,false).Count;
+                    //checks if node is in range and has no blocking objects between it and source
+                    if (dist <= newPower.range+1 && grid.checLine(activeCharacter.getCurrentNode(),targetNode)){
+                        activeCharacter.cast(activeAbility,targetNode);
+                        combatUI.setCursorMode("normal","none");
+                    }else if(newPower.range == 0 && dist == 1){
+                        //Debug.Log("range "+dist);
+                        activeCharacter.cast(activeAbility,targetNode);
+                        combatUI.setCursorMode("normal","none");
+                    }
+                    break;*/
+            }
+        }
+    }
+    
     public void StartTurn(){
         ActiveTeam = true;
         bool lost = true;

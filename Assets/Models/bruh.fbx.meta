@@ -1,0 +1,205 @@
+fileFormatVersion: 2
+guid: a806810f0c58f844297a3d696ae566dc
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      74: 6480417056718153440
+    second: Hotel_3|Cube.061Action
+  - first:
+      74: -2827673416853227331
+    second: Hotel_3|Cube.083Action
+  - first:
+      74: -2291640774652117473
+    second: Hotel_3|Cube.083Action.001
+  - first:
+      74: 4900975978628495212
+    second: Hotel_3|Cube.105Action
+  - first:
+      74: 152083313204842595
+    second: Hotel_3|Cube.105Action.001
+  - first:
+      74: 9214643037050097983
+    second: Hotel_3|Cube.106Action
+  - first:
+      74: -785007904873115825
+    second: Hotel_3|Cube.106Action.001
+  - first:
+      74: -58310216410278189
+    second: Hotel_3|Cube.109Action
+  - first:
+      74: 8772591260712538691
+    second: Hotel_3|Cube.109Action.001
+  - first:
+      74: -2704569519662911550
+    second: Hotel_3|Cube.111Action
+  - first:
+      74: 1244375347603495616
+    second: Hotel_3|Plane.098Action
+  - first:
+      74: 5702699907522969178
+    second: Hotel_3|Plane.098Action.001
+  - first:
+      74: -2238558318012917131
+    second: Hotel_3|Plane.098Action.002
+  - first:
+      74: -551474844533222782
+    second: Hotel_3|Plane.098Action.003
+  - first:
+      74: -2719854644830059809
+    second: Hotel_3|Plane.099Action
+  - first:
+      74: -2695045729981246439
+    second: Hotel_3|Plane.102Action
+  - first:
+      74: -3345297343716279859
+    second: Hotel_3|Plane.103Action
+  - first:
+      74: 6888783090916643819
+    second: Hotel_3|Plane.103Action.001
+  - first:
+      74: 4393535709248829381
+    second: Hotel_3|Plane.105Action
+  - first:
+      74: -452684308850344142
+    second: Hotel_3|Plane.105Action.001
+  - first:
+      74: -6373387240488999837
+    second: Hotel_3|Plane.106Action
+  - first:
+      74: -2054675120541692359
+    second: Hotel_3|Plane.106Action.001
+  - first:
+      74: 5799350266293839110
+    second: Hotel_3|Plane.108Action
+  - first:
+      74: -324169152820236700
+    second: Hotel_3|Plane.109Action
+  - first:
+      74: -657005559856910704
+    second: Hotel_3|Plane.110Action
+  - first:
+      74: -8813396131523855337
+    second: Hotel_3|Plane.112Action
+  - first:
+      74: -5491354103246901689
+    second: Hotel_3|Plane.112Action.001
+  - first:
+      74: -3456784608367871210
+    second: Hotel_3|Plane.113Action
+  - first:
+      74: 7166400784937060597
+    second: Hotel_3|Plane.113Action.001
+  - first:
+      74: -1049165336103711161
+    second: Hotel_3|Plane.114Action
+  - first:
+      74: -4666645291079026732
+    second: Hotel_3|Plane.114Action.001
+  - first:
+      74: 1111264437545607534
+    second: Hotel_3|Plane.115Action
+  - first:
+      74: 2833851572884443677
+    second: Hotel_3|Plane.115Action.001
+  - first:
+      74: -6554464248638187200
+    second: Hotel_3|Plane.116Action
+  - first:
+      74: 7324745621346183339
+    second: Hotel_3|Plane.118Action
+  - first:
+      74: -4193756492419852849
+    second: Hotel_3|Plane.119Action
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

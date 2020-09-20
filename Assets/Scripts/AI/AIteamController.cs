@@ -61,7 +61,7 @@ public class AIteamController : MonoBehaviour
     }
 
     public void Attack(){
-        bool lost = true;
+        /*bool lost = true;
         foreach (Character enemy in TeamMembers){
             if(!enemy.knockedOut){
                 lost = false;
@@ -70,7 +70,7 @@ public class AIteamController : MonoBehaviour
         if(lost){
             Game.GameEnd("Player Wins");
             return;
-        }
+        }*/
         state = "attacking";
     }
 

@@ -17,7 +17,16 @@ public class GameController : MonoBehaviour
     private string GameState = "Generating Map";
 
     void Update(){
-
+		if (Input.GetMouseButtonDown(1)){
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			RaycastHit hit;
+			if (Physics.Raycast(ray, out hit)){
+				//Destroy(hit.transform.gameObject);
+                PlayerTeamController Player = GameObject.FindWithTag("PlayerManager").GetComponent<PlayerTeamController>();
+                NodeController targetNode = hit.transform.gameObject.GetComponent<NodeTrigger>().mainNode;
+                PLT.playerCast(targetNode.x,targetNode.y);
+			}
+		}
     }
 
     public void GameEnd(string winner){
@@ -48,6 +57,7 @@ public class GameController : MonoBehaviour
         GameState = "AITurn";
         UI.UpdatePhase("Enemy Turn");
         AIT.Attack();
+        Buildings.CheckCity();
         //AIT.Move();
     }
 
