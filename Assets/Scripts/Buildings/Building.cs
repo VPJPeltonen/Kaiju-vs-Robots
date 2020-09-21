@@ -5,6 +5,7 @@ using UnityEngine;
 public class Building : Character
 {
     public GameObject Healthy,Damaged,Damaged2;
+    public ParticleSystem DamageEffect2;
     void Start(){
 
     }
@@ -41,6 +42,7 @@ public class Building : Character
         }*/
         health -= damage;
         DamageEffect.Emit(10);
+       // DamageEffect2.Emit(10);
         switch(health){
             case 2:
                 Healthy.SetActive(false);

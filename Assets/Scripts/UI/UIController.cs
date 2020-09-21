@@ -6,7 +6,7 @@ using TMPro;
 
 public class UIController : MonoBehaviour
 {
-    public GameObject StartButton;
+    public GameObject StartButton,winScreen,loseScreen;
     public TextMeshProUGUI PhaseText,FinishText;
     public void ShowStart(){
         StartButton.SetActive(true);
@@ -23,9 +23,11 @@ public class UIController : MonoBehaviour
     public void ShowFinish(bool win){
         FinishText.gameObject.SetActive(true);
         if(win){
-            FinishText.text = "Victory!";
+            winScreen.SetActive(true);
+            //FinishText.text = "Victory!";
         }else{
-            FinishText.text = "You have been defeated!";
+            loseScreen.SetActive(true);
+            //FinishText.text = "You have been defeated!";
         }
     }
 }

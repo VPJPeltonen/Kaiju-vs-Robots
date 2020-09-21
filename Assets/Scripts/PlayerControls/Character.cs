@@ -14,7 +14,7 @@ public class Character : MonoBehaviour
     public AudioClip hit,special;
     public Animator anim;
     protected Transform startNode, nextNode, endNode;
-    protected float movementAnimationSpeed = 4.0f;
+    protected float movementAnimationSpeed = 3.0f;
     protected float startTime,journeyLength;
     protected List<GameObject> path;
     protected int pathPoint;
